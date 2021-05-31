@@ -6,8 +6,8 @@ def dqcx(host):
 		'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0'
 		}
 	url = "https://site.ip138.com/domain/read.do?domain="+host+"&time=1592209224418"
-	
-	x = requests.get(url,headers=header)
+	requests.packages.urllib3.disable_warnings()
+	x = requests.get(url,headers=header,verify=False)
 	
 	txt = x.text
 	#print(txt)

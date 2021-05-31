@@ -51,8 +51,9 @@ def qqq(zidian,url):
 			urls = url+i
 			try:
 				requests.adapters.DEFAULT_RETRIES = 5
+				requests.packages.urllib3.disable_warnings()
 				s = requests.session()
-				r = s.head(urls,timeout=5,headers=header)
+				r = s.head(urls,timeout=5,headers=header,verify=False)
 				if r.status_code != 404 and r.status_code != 405 and r.status_code != 400:
 					print("\n[+]"+urls+"\nResponse code: ["+str(r.status_code)+"]")
 				s.close()

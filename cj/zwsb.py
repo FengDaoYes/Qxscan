@@ -57,8 +57,9 @@ def zwsb(host,port,que,pd):
 
 		urls = url+w
 		requests.adapters.DEFAULT_RETRIES = 5
+		requests.packages.urllib3.disable_warnings()
 		s = requests.session()
-		r = s.head(urls,timeout=5,headers=header)
+		r = s.head(urls,timeout=5,headers=header,verify=False)
 		if r.status_code == 200:
 			print("使用cms为："+e+"\n验证文件为："+urls)
 		s.close()

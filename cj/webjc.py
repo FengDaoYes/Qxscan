@@ -14,7 +14,8 @@ def xxx(ipdss):
 		host = host.strip()
 		url = "http://"+host
 		try:
-			qingqiu = requests.get(url,timeout=2)
+			requests.packages.urllib3.disable_warnings()
+			qingqiu = requests.get(url,timeout=2,verify=False)
 		except:
 			print('[-]'+host+"端口开放但连接错误...")
 		try:

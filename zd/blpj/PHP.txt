@@ -1,7 +1,3 @@
-/admin/uploadfile/
-/upload/
-/admin/upload.php
-/upload.php
 /bbs/s8servu.php
 /s8servu.php
 /wish.php

@@ -15,7 +15,8 @@ def cx(host):
 		}
 	hosts = hosts.strip()
 	url = "https://site.ip138.com/"+hosts+"/whois.htm"
-	x = requests.get(url,headers=header)
+	requests.packages.urllib3.disable_warnings()
+	x = requests.get(url,headers=header,verify=False)
 	
 	txt = x.text
 	

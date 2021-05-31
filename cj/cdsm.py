@@ -2,6 +2,7 @@ import socket
 import threading
 import requests
 import re
+import time
 
 list_ip = []
 def getIP(domain):
@@ -15,7 +16,8 @@ def xxx(host,port,https):
 		phttps = "http://"
 	url = phttps+host+":"+str(port)
 	try:
-		qingqiu = requests.get(url,timeout=2)
+		requests.packages.urllib3.disable_warnings()
+		qingqiu = requests.get(url,timeout=2,verify=False)
 	except:
 		print(host+"连接错误")
 	try:
@@ -94,8 +96,10 @@ def cdsm_main(yuming):
 		t.start()
 	for i in list_ip:
 		xxx(i,port,https)
+	time.sleep(1)
 	for t in threads:
 		t.join()
+
 	print("==扫描完成==\n")
 
 def main_a(host,port):

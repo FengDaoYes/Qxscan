@@ -12,8 +12,8 @@ def ffhq(url):
 		urls=ht+url
 	else:
 		urls=ht+ym
-
-	txt = requests.options(urls)
+	requests.packages.urllib3.disable_warnings()
+	txt = requests.options(urls,verify=False)
 
 	zd = txt.headers
 	if 'Access-Control-Allow-Methods' in zd.values():

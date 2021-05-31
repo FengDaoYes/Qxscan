@@ -16,7 +16,8 @@ def wzcx(ip):
 	'Connection':'close'}
 	url="""http://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?query="""+ip+"""&co=&resource_id=6006&t=1594534781056&ie=utf8&oe=gbk&cb=op_aladdin_callback&format=json&tn=baidu&cb=jQuery110206818778002992059_1594534767480&_=1594534767481"""
 	url=url.replace("%0A%09%09","")
-	r = requests.get(url,headers=header)
+	requests.packages.urllib3.disable_warnings()
+	r = requests.get(url,headers=header,verify=False)
 	w = r.text
 	q = re.findall("\"location\":\".*?\"",w)
 	e = q[0]

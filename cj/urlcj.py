@@ -19,13 +19,14 @@ def shouji(text):
 		i = i.strip()
 		urls = "http://www.baidu.com/link"+i
 		try:
+			requests.packages.urllib3.disable_warnings()
 			s = requests.session()
-			ymz = requests.get(urls,headers=headers,timeout=5)
+			ymz = requests.get(urls,headers=headers,timeout=5,verify=False)
 			lj = ymz.url
 			s.close()
 			lj = lj.strip()
 			if lj not in ljlb:
-				with open("lianjie.txt",'a') as txt:
+				with open(".\\file\\lianjie.txt",'a') as txt:
 					ljs = str(lj)+"\n"
 					txt.write(ljs)
 				ljlb.append(lj)
@@ -74,6 +75,6 @@ def urlcj_main():
 			break
 	zhi = zhi.replace(" ","+")
 	paxing(zhi)
-	print("[+]已将采集的链接输出到文件: ./lianjie.txt\n")
+	print("[+]已将采集的链接输出到文件: .\\file\\lianjie.txt\n")
 	print("==================url采集项结束==================\n")
 	

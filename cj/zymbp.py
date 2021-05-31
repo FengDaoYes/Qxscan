@@ -42,7 +42,8 @@ def main_a(zym,yuming):
 			if zhi != "None":
 				urls = "http://"+url+"/"
 				try:
-					qingqiu = requests.get(urls,timeout=2)
+					requests.packages.urllib3.disable_warnings()
+					qingqiu = requests.get(urls,timeout=2,verify=False)
 				except:
 					pass
 				try:
@@ -75,6 +76,8 @@ def main_a(zym,yuming):
 					pass
 				zhi += "\n================================="
 				print("[+]"+"http://"+url+"/\t-开启-\n解析IP为:"+zhi)
+				with open("子域名爆破.txt","a") as txt:
+					txt.write(url+"\n")
 
 
 
